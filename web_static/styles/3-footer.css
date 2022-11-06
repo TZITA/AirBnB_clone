@@ -1,4 +1,6 @@
-.fsty {
+/*CSS file for the footer section.*/
+
+footer {
 	position: fixed;
 	bottom: 0;
 	background-color: #FFFFFF;

@@ -1,4 +1,6 @@
-.hsty {
+/*CSS file for header section.*/
+
+header {
 	background-color: #FFFFFF;
 	height: 70px;
 	width: 100%;
