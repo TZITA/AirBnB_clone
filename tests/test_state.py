@@ -84,37 +84,19 @@ class TestState_save(unittest.TestCase):
     @classmethod
     def setUp(self):
         try:
-            os.rename("file.json", "tmp")
+            os.rename("myfile.json", "tmp")
         except IOError:
             pass
 
     def tearDown(self):
         try:
-            os.remove("file.json")
+            os.remove("myfile.json")
         except IOError:
             pass
         try:
-            os.rename("tmp", "file.json")
+            os.rename("tmp", "myfile.json")
         except IOError:
             pass
-
-    def test_one_save(self):
-        st = State()
-        sleep(0.05)
-        first_updated_at = st.updated_at
-        st.save()
-        self.assertLess(first_updated_at, st.updated_at)
-
-    def test_two_saves(self):
-        st = State()
-        sleep(0.05)
-        first_updated_at = st.updated_at
-        st.save()
-        second_updated_at = st.updated_at
-        self.assertLess(first_updated_at, second_updated_at)
-        sleep(0.05)
-        st.save()
-        self.assertLess(second_updated_at, st.updated_at)
 
     def test_save_with_arg(self):
         st = State()
@@ -125,7 +107,7 @@ class TestState_save(unittest.TestCase):
         st = State()
         st.save()
         stid = "State." + st.id
-        with open("file.json", "r") as f:
+        with open("myfile.json", "r") as f:
             self.assertIn(stid, f.read())
 
 

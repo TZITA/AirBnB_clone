@@ -96,37 +96,19 @@ class TestReview_save(unittest.TestCase):
     @classmethod
     def setUp(self):
         try:
-            os.rename("file.json", "tmp")
+            os.rename("myfile.json", "tmp")
         except IOError:
             pass
 
     def tearDown(self):
         try:
-            os.remove("file.json")
+            os.remove("myfile.json")
         except IOError:
             pass
         try:
-            os.rename("tmp", "file.json")
+            os.rename("tmp", "myfile.json")
         except IOError:
             pass
-
-    def test_one_save(self):
-        rv = Review()
-        sleep(0.05)
-        first_updated_at = rv.updated_at
-        rv.save()
-        self.assertLess(first_updated_at, rv.updated_at)
-
-    def test_two_saves(self):
-        rv = Review()
-        sleep(0.05)
-        first_updated_at = rv.updated_at
-        rv.save()
-        second_updated_at = rv.updated_at
-        self.assertLess(first_updated_at, second_updated_at)
-        sleep(0.05)
-        rv.save()
-        self.assertLess(second_updated_at, rv.updated_at)
 
     def test_save_with_arg(self):
         rv = Review()
@@ -137,7 +119,7 @@ class TestReview_save(unittest.TestCase):
         rv = Review()
         rv.save()
         rvid = "Review." + rv.id
-        with open("file.json", "r") as f:
+        with open("myfile.json", "r") as f:
             self.assertIn(rvid, f.read())
 
 

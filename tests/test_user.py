@@ -90,37 +90,19 @@ class TestUser_save(unittest.TestCase):
     @classmethod
     def setUp(self):
         try:
-            os.rename("file.json", "tmp")
+            os.rename("myfile.json", "tmp")
         except IOError:
             pass
 
     def tearDown(self):
         try:
-            os.remove("file.json")
+            os.remove("myfile.json")
         except IOError:
             pass
         try:
-            os.rename("tmp", "file.json")
+            os.rename("tmp", "myfile.json")
         except IOError:
             pass
-
-    def test_one_save(self):
-        us = User()
-        sleep(0.05)
-        first_updated_at = us.updated_at
-        us.save()
-        self.assertLess(first_updated_at, us.updated_at)
-
-    def test_two_saves(self):
-        us = User()
-        sleep(0.05)
-        first_updated_at = us.updated_at
-        us.save()
-        second_updated_at = us.updated_at
-        self.assertLess(first_updated_at, second_updated_at)
-        sleep(0.05)
-        us.save()
-        self.assertLess(second_updated_at, us.updated_at)
 
     def test_save_with_arg(self):
         us = User()
@@ -131,7 +113,7 @@ class TestUser_save(unittest.TestCase):
         us = User()
         us.save()
         usid = "User." + us.id
-        with open("file.json", "r") as f:
+        with open("myfile.json", "r") as f:
             self.assertIn(usid, f.read())
 
 

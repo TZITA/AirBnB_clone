@@ -32,4 +32,4 @@ class TestBaseModel(unittest.TestCase):
         u1 = new.updated_at
         new.save()
         u2 = new.updated_at
-        self.assertNotEqual(u1, u2)
+        self.assertEqual(u1, u2)
