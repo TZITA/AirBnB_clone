@@ -26,6 +26,11 @@ class BaseModel():
                 setattr(self, k, v)
         models.storage.new(self)
 
+    def __setitem__(self, key, value):
+        """ Enables this class to support item assignment"""
+        setattr(self, key, value)
+        models.storage.save()
+
     def save(self):
         """ Update instance attr. updated_at with current datetime."""
         models.storage.save()
